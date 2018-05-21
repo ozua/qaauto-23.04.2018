@@ -34,7 +34,7 @@ public class LinkedinLoginTest {
     }
 
     @Test
-    public void negativeLoginTest() throws InterruptedException {
+    public void negativeLoginTestWithWrightLoginAndWrongPasswordFields() throws InterruptedException {
         LinkedInLoginPage linkedInLoginPage = new LinkedInLoginPage(webDriver);
 
         Assert.assertEquals(linkedInLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
@@ -49,9 +49,46 @@ public class LinkedinLoginTest {
 
         Assert.assertEquals(currentPageUrl, "https://www.linkedin.com/uas/login-submit", "Login-submit page is wrong");
         Assert.assertEquals(currentPageTitle, "Войти в LinkedIn", "Login-Submit page title is wrong");
+        Assert.assertTrue(linkedInLoginPage.isErrorMessageDisplayed(),  "No error message displayed");
+        Assert.assertEquals(linkedInLoginPage.errorMessage(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.", "Wrong error message text displayed");
+    }
 
-        WebElement errorMessage = webDriver.findElement(By.xpath("//div[@role='alert']"));
-        Assert.assertEquals(errorMessage.getText(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.", "Wrong error message text displayed");
+    @Test
+    public void negativeLoginTestWithEmptyLoginAndPasswordFields() throws InterruptedException {
+        LinkedInLoginPage linkedInLoginPage = new LinkedInLoginPage(webDriver);
+
+        Assert.assertEquals(linkedInLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
+        Assert.assertTrue(linkedInLoginPage.isSignInButtonDisplayed(), "Sign In button is not displayed");
+
+        linkedInLoginPage.login("", "");
+
+        sleep(3000);
+
+        String currentPageUrl = linkedInLoginPage.getCurrentUrl();
+        String currentPageTitle = linkedInLoginPage.getCurrentTitle();
+
+        Assert.assertEquals(currentPageUrl, "https://www.linkedin.com/", "Login page is wrong");
+        Assert.assertEquals(currentPageTitle, "LinkedIn: Log In or Sign Up", "Login page title is wrong");
+        Assert.assertTrue(linkedInLoginPage.isErrorMessageDisplayed(),  "Error message is displayed");
+    }
+
+    @Test
+    public void negativeLoginTestWithWrightLoginAndEmptyPasswordFields() throws InterruptedException {
+        LinkedInLoginPage linkedInLoginPage = new LinkedInLoginPage(webDriver);
+
+        Assert.assertEquals(linkedInLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
+        Assert.assertTrue(linkedInLoginPage.isSignInButtonDisplayed(), "Sign In button is not displayed");
+
+        linkedInLoginPage.login("erik.mouwes@gmail.com", "");
+
+        sleep(3000);
+
+        String currentPageUrl = linkedInLoginPage.getCurrentUrl();
+        String currentPageTitle = linkedInLoginPage.getCurrentTitle();
+
+        Assert.assertEquals(currentPageUrl, "https://www.linkedin.com/", "Login page is wrong");
+        Assert.assertEquals(currentPageTitle, "LinkedIn: Log In or Sign Up", "Login page title is wrong");
+        Assert.assertTrue(linkedInLoginPage.isErrorMessageDisplayed(),  "Error message is displayed");
     }
 
     @AfterMethod
