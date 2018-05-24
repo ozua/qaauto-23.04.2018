@@ -1,19 +1,8 @@
 import org.openqa.selenium.WebDriver;
 
-import java.awt.*;
-
-public class LinkedInHomePage {
-    WebDriver webDriver;
+public class LinkedInHomePage extends LinkedInBasePage {
 
     public LinkedInHomePage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
-
-    public String getCurrentTitle() {
-        return webDriver.getTitle();
-    }
-
-    public String getCurrentUrl() {
-        return webDriver.getCurrentUrl();
+        super(webDriver);
     }
 }
