@@ -19,28 +19,22 @@ public class LinkedInLoginPage extends LinkedInBasePage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public LinkedInHomePage login(String email, String password){
-        inputLogin.sendKeys(email);
-        inputPassword.sendKeys(password);
-        submitButton.click();
-        return PageFactory.initElements(webDriver, LinkedInHomePage.class);
-    }
-
-    public LinkedInFailedLoginPage unsuccesfullLogin(String email, String password){
-        inputLogin.sendKeys(email);
-        inputPassword.sendKeys(password);
-        submitButton.click();
-        return PageFactory.initElements(webDriver, LinkedInFailedLoginPage.class);
-    }
-
-    public LinkedInReturnedLoginPage emptyLogin(String email, String password){
-        inputLogin.sendKeys(email);
-        inputPassword.sendKeys(password);
-        submitButton.click();
-        return PageFactory.initElements(webDriver, LinkedInReturnedLoginPage.class);
-    }
-
-    public boolean isSignInButtonDisplayed(){
+    public boolean isPageLoaded() {
         return submitButton.isDisplayed();
+    }
+
+    public <T> T login(String email, String password){
+        inputLogin.sendKeys(email);
+        inputPassword.sendKeys(password);
+        submitButton.click();
+        if (getCurrentUrl().contains("/feed")){
+            return (T) new LinkedInHomePage(webDriver);
+        }
+        if (getCurrentUrl().contains("/login-submit")){
+            return (T) new LinkedInFailedLoginPage(webDriver);
+        }
+        else {
+            return (T) this;
+        }
     }
 }
