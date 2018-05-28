@@ -47,13 +47,15 @@ public class LinkedinLoginTest {
     }
 
     @Test(dataProvider = "validDataProvider")
-    public void successfulLoginTest(String email, String password) {
+    public void successfulLoginTest(String email, String password) throws InterruptedException {
         LinkedInLoginPage linkedInLoginPage = new LinkedInLoginPage(webDriver);
 
         Assert.assertEquals(linkedInLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
         Assert.assertTrue(linkedInLoginPage.isSignInButtonDisplayed(), "Sign In button is not displayed");
 
         LinkedInHomePage linkedInHomePage = linkedInLoginPage.login(email, password);
+
+        sleep(5000);
 
         Assert.assertTrue(linkedInHomePage.getCurrentTitle().contains("LinkedIn"), "Page title did not change after Sign In");
         Assert.assertEquals(linkedInHomePage.getCurrentUrl(), "https://www.linkedin.com/feed/", "Homepage url is wrong.");
@@ -63,13 +65,12 @@ public class LinkedinLoginTest {
     public void negativeReturnedToLoginSubmitTest(String email, String password) throws InterruptedException {
         LinkedInLoginPage linkedInLoginPage = new LinkedInLoginPage(webDriver);
 
+        Assert.assertEquals(linkedInLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
         Assert.assertTrue(linkedInLoginPage.isSignInButtonDisplayed(), "Sign In button is not displayed");
 
-        linkedInLoginPage.login(email, password);
+        LinkedInFailedLoginPage linkedInFailedLoginPage = linkedInLoginPage.unsuccesfullLogin(email, password);
 
         sleep(5000);
-
-        LinkedInFailedLoginPage linkedInFailedLoginPage = new LinkedInFailedLoginPage(webDriver);
 
         Assert.assertTrue(linkedInFailedLoginPage.isPageLoaded(),  "Wrong login submit page loaded");
         Assert.assertEquals(linkedInFailedLoginPage.getErrorMessageText(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.", "Wrong error message text displayed");
@@ -82,14 +83,12 @@ public class LinkedinLoginTest {
         Assert.assertEquals(linkedInLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
         Assert.assertTrue(linkedInLoginPage.isSignInButtonDisplayed(), "Sign In button is not displayed");
 
-        linkedInLoginPage.login(email, password);
+        LinkedInReturnedLoginPage linkedInReturnedLoginPage = linkedInLoginPage.emptyLogin(email, password);
 
         sleep(5000);
 
-        LinkedInFailedLoginPage linkedInFailedLoginPage = new LinkedInFailedLoginPage(webDriver);
-
-        Assert.assertTrue(linkedInFailedLoginPage.isPageLoaded(),  "Wrong login submit page loaded");
-        Assert.assertEquals(linkedInFailedLoginPage.getErrorMessageText(), "При заполнении формы были допущены ошибки. Проверьте и исправьте отмеченные поля.", "Wrong error message text displayed");
+        Assert.assertEquals(linkedInReturnedLoginPage.getCurrentTitle(), "LinkedIn: Log In or Sign Up", "Login page title is wrong");
+        Assert.assertTrue(linkedInReturnedLoginPage.isSignInButtonDisplayed(), "Sign In button is not displayed");
     }
 
     @AfterMethod

@@ -1,27 +1,43 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LinkedInLoginPage extends LinkedInBasePage {
+
+    @FindBy(id = "login-email")
     private WebElement inputLogin;
+
+    @FindBy(id = "login-password")
     private WebElement inputPassword;
+
+    @FindBy(xpath = "//input[@class='login submit-button']")
     private WebElement submitButton;
 
     public LinkedInLoginPage(WebDriver webDriver) {
         super(webDriver);
-        initElements();
+        PageFactory.initElements(webDriver, this);
     }
 
-    public void initElements(){
-        inputLogin = webDriver.findElement(By.id("login-email"));
-        inputPassword = webDriver.findElement(By.id("login-password"));
-        submitButton = webDriver.findElement(By.xpath("//input[@class='login submit-button']"));
-    }
-
-    public void login(String email, String password){
-        inputLogin.sendKeys( email);
-        inputPassword.sendKeys( password);
+    public LinkedInHomePage login(String email, String password){
+        inputLogin.sendKeys(email);
+        inputPassword.sendKeys(password);
         submitButton.click();
+        return PageFactory.initElements(webDriver, LinkedInHomePage.class);
+    }
+
+    public LinkedInFailedLoginPage unsuccesfullLogin(String email, String password){
+        inputLogin.sendKeys(email);
+        inputPassword.sendKeys(password);
+        submitButton.click();
+        return PageFactory.initElements(webDriver, LinkedInFailedLoginPage.class);
+    }
+
+    public LinkedInReturnedLoginPage emptyLogin(String email, String password){
+        inputLogin.sendKeys(email);
+        inputPassword.sendKeys(password);
+        submitButton.click();
+        return PageFactory.initElements(webDriver, LinkedInReturnedLoginPage.class);
     }
 
     public boolean isSignInButtonDisplayed(){
