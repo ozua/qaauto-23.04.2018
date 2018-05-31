@@ -14,6 +14,9 @@ public class LinkedInLoginPage extends LinkedInBasePage {
     @FindBy(xpath = "//input[@class='login submit-button']")
     private WebElement submitButton;
 
+    @FindBy(xpath = "//a[@class='link-forgot-password']")
+    private WebElement resetPasswordLink;
+
     public LinkedInLoginPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
@@ -36,5 +39,10 @@ public class LinkedInLoginPage extends LinkedInBasePage {
         else {
             return (T) this;
         }
+    }
+
+    public LinkedInResetPasswordPage clickOnForgotPasswordLink() {
+        resetPasswordLink.click();
+        return new LinkedInResetPasswordPage(webDriver);
     }
 }
