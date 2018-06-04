@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import util.GMailService;
 
 public class LinkedInResetPasswordPage extends LinkedInBasePage {
 
@@ -18,9 +19,11 @@ public class LinkedInResetPasswordPage extends LinkedInBasePage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public LinkedInRequestPasswordResetSubmitPage sendResetPasswordMail() {
+    public LinkedInRequestPasswordResetSubmitPage sendResetPasswordMail(String userEmail) {
+        gMailService.connect();
         userNameField.sendKeys("erik.mouwes@gmail.com");
         resetPasswordSubmitButton.click();
+
         return new LinkedInRequestPasswordResetSubmitPage(webDriver);
     }
 
