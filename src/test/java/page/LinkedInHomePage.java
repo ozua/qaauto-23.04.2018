@@ -10,6 +10,9 @@ public class LinkedInHomePage extends LinkedInBasePage {
     @FindBy(id = "nav-settings__dropdown-trigger")
     private WebElement profileNavItem;
 
+    @FindBy(xpath = "//input[@placeholder='search']")
+    private WebElement searchField;
+
     public LinkedInHomePage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
