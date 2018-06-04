@@ -2,15 +2,14 @@ package test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.LinkedInRequestPasswordResetSubmitPage;
-import page.LinkedInResetPasswordPage;
+import page.*;
 
 public class LinkedInResetPasswordTest extends LinkedInBaseTest {
 
     @Test
     public void successfullPasswordResetTest() {
         String userEmail = "erik.mouwes@gmail.com";
-        String newUserPassword = "";
+        String newUserPassword = "vlttar54";
 
         LinkedInResetPasswordPage linkedInResetPasswordPage = linkedInLoginPage.clickOnForgotPasswordLink();
         Assert.assertTrue(linkedInResetPasswordPage.isPageLoaded(), "Forgot password page is not loaded");
@@ -21,9 +20,10 @@ public class LinkedInResetPasswordTest extends LinkedInBaseTest {
         LinkedInSetNewPasswordPage linkedInSetNewPasswordPage = linkedInRequestPasswordResetSubmitPage.navigateToLinkFromEmail();
         Assert.assertTrue(linkedInSetNewPasswordPage.isPageLoaded(), "Set new password page is not loaded");
 
-        linkedInSetNewPasswordPage.submitNewPassword(newUserPassword);
+        LinkedInPasswordChangeConfirmedPage linkedinPasswordChangeConfirmedPage = linkedInSetNewPasswordPage.setNewUserPassword(newUserPassword);
+        Assert.assertTrue(linkedinPasswordChangeConfirmedPage.isPageLoaded(),"Password change confirmed page is not loaded.");
 
-        LinkedInSuccessfullPasswordResetPage linkedInSuccessfullPasswordResetPage = linkedInSetNewPasswordPage.submitNewPassword
-
+        LinkedInHomePage linkedinHomePage = linkedinPasswordChangeConfirmedPage.clickHomeButton();
+        Assert.assertTrue(linkedinHomePage.isPageLoaded(),"Home page is not loaded.");
     }
 }
