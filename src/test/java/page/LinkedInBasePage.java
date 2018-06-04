@@ -8,7 +8,7 @@ import util.GMailService;
 
 public abstract class LinkedInBasePage {
     protected WebDriver webDriver;
-    GMailService gMailService = new GMailService();
+    protected static GMailService gMailService = new GMailService();
 
     public LinkedInBasePage (WebDriver webDriver) {
         this.webDriver = webDriver;

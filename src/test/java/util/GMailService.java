@@ -25,16 +25,16 @@ public class GMailService {
      * Example of util.GMailService usage
      * @param args - dummy args for main()
      */
-    public static void main(String[] args) {
-        String messageSubject = "pass";
-        String messageTo = "erik";
-        String messageFrom = "oleg";
-
-        GMailService gMailService = new GMailService();
-        gMailService.connect();
-        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 30);
-        System.out.println("Content: " + message);
-    }
+//    public static void main(String[] args) {
+//        String messageSubject = "pass";
+//        String messageTo = "erik";
+//        String messageFrom = "oleg";
+//
+//        GMailService gMailService = new GMailService();
+//        gMailService.connect();
+//        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 30);
+//        System.out.println("Content: " + message);
+//    }
 
     /**
      * Default util.GMailService constructor with predefined user/pass credentials

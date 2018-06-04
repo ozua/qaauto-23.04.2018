@@ -16,11 +16,13 @@ public class LinkedInPasswordChangeConfirmedPage extends LinkedInBasePage {
     }
 
     public boolean isPageLoaded() {
-        waitUntilElementIsClickable(returnToHomepageButton, 5);
+        waitUntilElementIsClickable(returnToHomepageButton, 120);
         return returnToHomepageButton.isDisplayed();
     }
 
     public LinkedInHomePage clickHomeButton() {
+        returnToHomepageButton.click();
+
         return new LinkedInHomePage(webDriver);
     }
 }

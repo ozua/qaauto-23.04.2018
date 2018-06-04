@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LinkedInHomePage extends LinkedInBasePage {
 
-    @FindBy(xpath = "//li[@id='profile-nav-item']")
+    @FindBy(id = "nav-settings__dropdown-trigger")
     private WebElement profileNavItem;
 
     public LinkedInHomePage(WebDriver webDriver) {
@@ -16,6 +16,7 @@ public class LinkedInHomePage extends LinkedInBasePage {
     }
 
     public boolean isPageLoaded() {
+        waitUntilElementIsClickable(profileNavItem, 120);
         return profileNavItem.isDisplayed();
     }
 }

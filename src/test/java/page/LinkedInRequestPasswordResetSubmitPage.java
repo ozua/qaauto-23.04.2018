@@ -18,7 +18,7 @@ public class LinkedInRequestPasswordResetSubmitPage extends LinkedInBasePage {
     }
 
     public boolean isPageLoaded() {
-        waitUntilElementIsClickable(resendUrlButton, 5);
+        waitUntilElementIsClickable(resendUrlButton, 120);
         return resendUrlButton.isDisplayed();
     }
 
@@ -27,9 +27,11 @@ public class LinkedInRequestPasswordResetSubmitPage extends LinkedInBasePage {
         String messageTo = "erik.mouwes@gmail.com";
         String messageFrom = "security-noreply@linkedin.com";
 
-        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 30);
+        String message = gMailService.waitMessage(messageSubject, messageTo, messageFrom, 120);
         String resetPasswordLink = StringUtils.substringBetween(message, "To change your LinkedIn password, click <a href=\"", "\" style").replace("&amp;","&");
         System.out.println("Content: " + resetPasswordLink);
+
+        webDriver.get(resetPasswordLink);
 
         return new LinkedInSetNewPasswordPage(webDriver);
     }
