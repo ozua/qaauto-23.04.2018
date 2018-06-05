@@ -29,4 +29,10 @@ public abstract class LinkedInBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
         return webElement;
     }
+
+    public WebElement waitUntilElementIsVisible (WebElement webElement, int timeOutInSeconds){
+        WebDriverWait wait = new WebDriverWait(webDriver, timeOutInSeconds);
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement;
+    }
 }

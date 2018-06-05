@@ -14,16 +14,16 @@ public class LinkedInSearchTest extends LinkedInBaseTest {
         String searchTerm = "HR";
 
         LinkedInHomePage linkedInHomePage = linkedInLoginPage.login("erik.mouwes@gmail.com", "vlttar54");
-        Assert.assertTrue(linkedInLoginPage.isPageLoaded(), "Login page is not loaded");
+        Assert.assertTrue(linkedInHomePage.isPageLoaded(), "Home page is not loaded");
 
         LinkedInSearchResultsPage linkedInSearchResultsPage = linkedInHomePage.search(searchTerm);
         Assert.assertTrue(linkedInSearchResultsPage.isPageLoaded(), "Search results page is not loaded");
 
-        List<String> searchResultList = linkedInSearchResultsPage.getSearchResultsCount()
-        Assert.assertEquals(searchResultList.size(), 10, "Count of search results is wrong");
+        List<String> searchResultsList = linkedInSearchResultsPage.getSearchResults();
+        Assert.assertEquals(searchResultsList.size(), 10, "Count of search results is wrong");
 
-        for (String searchResult:searchResultList){
-            Assert.assertTrue(searchResult.contains(searchTerm), "Search results page is not loaded");
+        for (String searchResult : searchResultsList) {
+            Assert.assertTrue(searchResult.toLowerCase().contains(searchTerm.toLowerCase()),"Searchterm "+searchTerm+" was not found in: \n"+searchResult);
         }
     }
 }
