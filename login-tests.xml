@@ -4,7 +4,7 @@
 
     <test name="Login Tests Chrome EN">
         <parameter name="browserType" value="Chrome"/>
-        <parameter name="envURL" value="https://www.us.linkedin.com/" />
+        <parameter name="envURL" value="https://us.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>
@@ -12,7 +12,7 @@
 
     <test name="Login Tests Chrome RU">
         <parameter name="browserType" value="Chrome"/>
-        <parameter name="envURL" value="https://www.ru.linkedin.com/" />
+        <parameter name="envURL" value="https://ru.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>
@@ -20,7 +20,7 @@
 
     <test name="Login Tests Chrome DE">
         <parameter name="browserType" value="Chrome"/>
-        <parameter name="envURL" value="https://www.de.linkedin.com/" />
+        <parameter name="envURL" value="https://de.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>
@@ -28,7 +28,7 @@
 
     <test name="Login Tests Firefox EN">
         <parameter name="browserType" value="Firefox"/>
-        <parameter name="envURL" value="https://www.us.linkedin.com/" />
+        <parameter name="envURL" value="https://us.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>
@@ -36,7 +36,7 @@
 
     <test name="Login Tests Firefox RU">
         <parameter name="browserType" value="Firefox"/>
-        <parameter name="envURL" value="https://www.ru.linkedin.com/" />
+        <parameter name="envURL" value="https://ru.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>
@@ -44,7 +44,7 @@
 
     <test name="Login Tests Firefox DE">
         <parameter name="browserType" value="Firefox"/>
-        <parameter name="envURL" value="https://www.de.linkedin.com/" />
+        <parameter name="envURL" value="https://de.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>

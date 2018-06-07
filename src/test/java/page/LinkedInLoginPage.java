@@ -35,7 +35,7 @@ public class LinkedInLoginPage extends LinkedInBasePage {
      * Method for log in to account with determined data providers for each page type in the scope
      * @param email - email data
      * @param password - password data
-     * @param <T> - general Text parameter
+     * @param <T> - generic type used to return any page type
      * @return - returns one of the Pages. Depends from used DataProvider
      */
     public <T> T login(String email, String password){
@@ -68,6 +68,8 @@ public class LinkedInLoginPage extends LinkedInBasePage {
      * Method for checking LoginPage loading conditions
      */
     public boolean isPageLoaded() {
+        waitUntilElementIsVisible(submitButton, 10);
+
         return submitButton.isDisplayed();
     }
 }

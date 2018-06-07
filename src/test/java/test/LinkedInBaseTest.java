@@ -21,8 +21,8 @@ public class LinkedInBaseTest {
     @Parameters({"browserType", "envURL"})
 
     @BeforeMethod
-    public void beforeTest(@Optional("chrome") String browserType,
-                           @Optional("https://linkedin.com/") String envURL) {
+    public void beforeTest(@Optional("firefox") String browserType,
+                           @Optional("https://us.linkedin.com/") String envURL) {
 
         switch (browserType.toLowerCase()){
             case "firefox" :

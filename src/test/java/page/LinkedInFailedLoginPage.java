@@ -30,6 +30,8 @@ public class LinkedInFailedLoginPage extends LinkedInBasePage {
      * @return - returns text from error message
      */
     public  String getErrorMessageText() {
+
+
         return errorMessage.getText();
     }
 

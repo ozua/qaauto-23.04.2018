@@ -44,6 +44,8 @@ public class LinkedInHomePage extends LinkedInBasePage {
      * Method for checking HomePage loading conditions
      */
     public boolean isPageLoaded() {
+        waitUntilElementIsVisible(profileNavItem, 120);
+
         return profileNavItem.isDisplayed();
     }
 }

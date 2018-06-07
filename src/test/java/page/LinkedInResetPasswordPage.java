@@ -42,6 +42,8 @@ public class LinkedInResetPasswordPage extends LinkedInBasePage {
      * Method for checking ResetPasswordPage loading conditions
      */
     public boolean isPageLoaded() {
+        waitUntilElementIsVisible(userNameField, 120);
+
         return userNameField.isDisplayed();
     }
 }

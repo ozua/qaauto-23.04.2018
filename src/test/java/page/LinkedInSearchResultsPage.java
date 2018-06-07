@@ -52,6 +52,8 @@ public class LinkedInSearchResultsPage extends LinkedInBasePage {
      * Method for checking SearchResultsPage loading conditions
      */
     public boolean isPageLoaded() {
+        waitUntilElementIsVisible(searchResultsCount, 120);
+
         return searchResultsCount.isDisplayed();
     }
 }
