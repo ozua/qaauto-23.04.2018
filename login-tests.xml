@@ -1,8 +1,50 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="LinkedIn">
+<suite name="LinkedInLoginTests">
 
-    <test name="Login Tests">
+    <test name="Login Tests Chrome EN">
+        <parameter name="browserType" value="Chrome"/>
+        <parameter name="envURL" value="https://www.us.linkedin.com/" />
+        <classes>
+            <class name="test.LinkedinLoginTest" />
+        </classes>
+    </test>
+
+    <test name="Login Tests Chrome RU">
+        <parameter name="browserType" value="Chrome"/>
+        <parameter name="envURL" value="https://www.ru.linkedin.com/" />
+        <classes>
+            <class name="test.LinkedinLoginTest" />
+        </classes>
+    </test>
+
+    <test name="Login Tests Chrome DE">
+        <parameter name="browserType" value="Chrome"/>
+        <parameter name="envURL" value="https://www.de.linkedin.com/" />
+        <classes>
+            <class name="test.LinkedinLoginTest" />
+        </classes>
+    </test>
+
+    <test name="Login Tests Firefox EN">
+        <parameter name="browserType" value="Firefox"/>
+        <parameter name="envURL" value="https://www.us.linkedin.com/" />
+        <classes>
+            <class name="test.LinkedinLoginTest" />
+        </classes>
+    </test>
+
+    <test name="Login Tests Firefox RU">
+        <parameter name="browserType" value="Firefox"/>
+        <parameter name="envURL" value="https://www.ru.linkedin.com/" />
+        <classes>
+            <class name="test.LinkedinLoginTest" />
+        </classes>
+    </test>
+
+    <test name="Login Tests Firefox DE">
+        <parameter name="browserType" value="Firefox"/>
+        <parameter name="envURL" value="https://www.de.linkedin.com/" />
         <classes>
             <class name="test.LinkedinLoginTest" />
         </classes>

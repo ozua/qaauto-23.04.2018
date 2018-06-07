@@ -5,23 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import util.GMailService;
 
+/**
+ * RequestPasswordResetSubmitPage object class
+ */
 public class LinkedInRequestPasswordResetSubmitPage extends LinkedInBasePage {
 
     @FindBy(id = "resend-url")
     private WebElement resendUrlButton;
 
+    /**
+     * Constructor of RequestPasswordResetSubmitPage
+     * @param webDriver - webDriver instance
+     */
     public LinkedInRequestPasswordResetSubmitPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
-    public boolean isPageLoaded() {
-        waitUntilElementIsClickable(resendUrlButton, 120);
-        return resendUrlButton.isDisplayed();
-    }
-
+    /**
+     * Method for setting new password with help of util gMailService
+     * @return - returns new SetNewPasswordPage
+     */
     public LinkedInSetNewPasswordPage navigateToLinkFromEmail() {
         String messageSubject = "Erik, here's the link to reset your password";
         String messageTo = "erik.mouwes@gmail.com";
@@ -36,4 +41,12 @@ public class LinkedInRequestPasswordResetSubmitPage extends LinkedInBasePage {
         return new LinkedInSetNewPasswordPage(webDriver);
     }
 
+    /**
+     * Method for checking RequestPasswordResetSubmitPage loading conditions
+     */
+    public boolean isPageLoaded() {
+        waitUntilElementIsClickable(resendUrlButton, 120);
+
+        return resendUrlButton.isDisplayed();
+    }
 }

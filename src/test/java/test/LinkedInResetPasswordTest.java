@@ -4,6 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.*;
 
+/**
+ * ResetPasswordTest object class
+ */
 public class LinkedInResetPasswordTest extends LinkedInBaseTest {
 
     @Test

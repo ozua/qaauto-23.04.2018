@@ -5,6 +5,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page.*;
 
+/**
+ * LoginTest object class
+ */
 public class LinkedinLoginTest extends LinkedInBaseTest {
 
     @DataProvider

@@ -7,6 +7,9 @@ import page.LinkedInSearchResultsPage;
 
 import java.util.List;
 
+/**
+ * SearchTest object class
+ */
 public class LinkedInSearchTest extends LinkedInBaseTest {
 
     @Test

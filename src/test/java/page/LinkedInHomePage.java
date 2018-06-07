@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * HomePage object class
+ */
 public class LinkedInHomePage extends LinkedInBasePage {
 
     @FindBy(id = "nav-settings__dropdown-trigger")
@@ -14,20 +17,33 @@ public class LinkedInHomePage extends LinkedInBasePage {
     @FindBy(xpath = "//input[@role='combobox']")
     private WebElement searchField;
 
+    /**
+     * Constructor of HomePage
+     * @param webDriver - webDriver instance
+     */
     public LinkedInHomePage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver, this);
         waitUntilElementIsVisible(profileNavItem, 120);
     }
 
-    public boolean isPageLoaded() {
-        return profileNavItem.isDisplayed();
-    }
-
+    /**
+     * Method for searching terms on HomePage
+     * @param searchTerm - term that you need to find on HomePage
+     * @return - returns results of searching in to new SearchResultsPage
+     */
     public LinkedInSearchResultsPage search(String searchTerm) {
         waitUntilElementIsVisible(searchField, 120);
         searchField.sendKeys(searchTerm);
         searchField.sendKeys(Keys.ENTER);
+
         return new LinkedInSearchResultsPage(webDriver);
+    }
+
+    /**
+     * Method for checking HomePage loading conditions
+     */
+    public boolean isPageLoaded() {
+        return profileNavItem.isDisplayed();
     }
 }
